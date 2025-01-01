@@ -1,6 +1,6 @@
 import { Model, INITIAL_STATE } from '@zhangsai/model';
 import { httpGetBaseInfo } from '@/services/withAuth';
-import formatPermissions from './permissions';
+import notPermissions  from './permissions';
 import { lsGetToken, lsRemoveToken } from '@/utils/business/token';
 import router, { history } from '@/router';
 import { httpPostLogout } from '@/services/login';
@@ -71,24 +71,25 @@ class WithAuth extends Model<InitialState> {
     this.setState(initialState);
   }
   async requestBaseInfo() {
-    return httpGetBaseInfo().then(res => {
-      const { userId = 0, userAccount = '', avatar = '', permissions = [] } = res.data.data;
+    // 写死
+    // return httpGetBaseInfo().then(res => {
+      // const { userId = 0, userAccount = '', avatar = '', permissions = [] } = res.data.data;
       this.setState({
         hasRequestedBaseInfo: true,
-        userId,
-        userAccount,
-        avatar,
-        permissions: formatPermissions(permissions),
+        userId: 2,
+        userAccount: '此夜曲中闻折柳',
+        avatar: 'https://p26-passport.byteacctimg.com/img/user-avatar/27f273980e0597820475cc6fd66cf037~120x120.awebp',
+        permissions: notPermissions(),
       });
-    });
+    // });
   }
   async actionLogout() {
-    return httpPostLogout().then(() => {
+    // return httpPostLogout().then(() => {
       this.destroy();
       message.success(i18n.t('layout:已登出'));
       history.push('/login');
       lsRemoveToken();
-    });
+    // });
   }
 }
 

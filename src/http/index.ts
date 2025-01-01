@@ -6,7 +6,7 @@ import { message } from '@/components/AntdProvider';
 import { history } from '@/router';
 import { t } from 'i18next';
 
-const { VITE_API_HOST } = import.meta.env;
+const { VITE_API_HOST, VITE_APP_ENV } = import.meta.env;
 
 type StatusHandlers = Record<string, (data: ResType) => void>;
 
@@ -41,7 +41,7 @@ const codeMap: CodeHandlers = {
 
 const request: AxiosInstance = axios.create({
   // 本地开发若要修改环境，请移步至 .env.localhost 文件中
-  baseURL: VITE_API_HOST,
+  baseURL: VITE_APP_ENV + VITE_API_HOST,
   // withCredentials: true, // 跨域要把这个注释
   timeout: 15000,
 });
@@ -62,18 +62,18 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response: AxiosResponse<ResType>) => {
-    const { code, message: resMessage } = response.data;
-    const { silence = false, ignoreResponseIC = false } = response.config;
+    // const { code, message: resMessage } = response.data;
+    // const { silence = false, ignoreResponseIC = false } = response.config;
 
-    if (ignoreResponseIC) {
-      return response;
-    }
-    if (code !== '200') {
-      if (!silence && typeof resMessage === 'string') {
-        message.error(resMessage);
-      }
-      return Promise.reject(new Error(resMessage || `Http error, code is ${code}`));
-    }
+    // if (ignoreResponseIC) {
+    //   return response;
+    // }
+    // if (code !== '200') {
+    //   if (!silence && typeof resMessage === 'string') {
+    //     message.error(resMessage);
+    //   }
+    //   return Promise.reject(new Error(resMessage || `Http error, code is ${code}`));
+    // }
 
     return response;
   },

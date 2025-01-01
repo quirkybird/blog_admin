@@ -7,12 +7,15 @@ import { useMenuStatus } from './hooks';
 import { baseModel } from '@/models/base';
 import { useModel } from '@zhangsai/model';
 import useStore from '@/layouts/ConsoleLayout/store';
+import { useTranslation } from 'react-i18next';
+
 import './index.less';
 
 /**
  * Layout菜单
  */
 const SideMenu = () => {
+  const { t: t_layout } = useTranslation('layout');
   const logo = useModel(baseModel, 'logo');
   const { flattenRoutes } = useRouter(router);
   const { menuItems, collapsed } = useStore();
@@ -51,7 +54,7 @@ const SideMenu = () => {
     >
       <div className="side-menu__header">
         <img className="side-menu__header-logo" src={logo} alt="react-antd-console" />
-        <h3>react-antd-console</h3>
+        <h3>{t_layout("岛屿博客管理")}</h3>
       </div>
       <Menu
         className="side-menu__antd-menu"

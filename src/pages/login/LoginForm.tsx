@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 import SvgIcon from '@/components/SvgIcon';
 
 interface FormValues {
-  userAccount: string;
-  userPassword: string;
+  username: string;
+  password: string;
 }
 
 const LoginForm = () => {
@@ -16,16 +16,19 @@ const LoginForm = () => {
   const { t: t_login } = useTranslation('login');
 
   const onFinish = () => {
-    form.validateFields().then(({ userAccount, userPassword }: FormValues) => {
+    form.validateFields().then(({ username, password }: FormValues) => {
       httpPostLogin({
-        userAccount,
-        userPassword,
-      }).then(({ data: { data } }) => {
-        lsSetToken(data.accessToken, data.refreshToken, data.expiration);
+        username,
+        password,
+      }).then(({ data }) => {
+        lsSetToken(data.token);
         message.success(t_login('登录成功'));
         const reUrl = window.location.search.replace(/^\?/, '').split('&').map(item => item.split('=')).find(([key]) => key === 'reUrl')?.[1];
         history.push(reUrl ?? '/home');
-      }).catch(() => {});
+      }).catch((error) => {
+        console.log(error)
+        error.response && message.error(error.response.data)
+      });
     }).catch(() => {});
   };
 
@@ -33,23 +36,23 @@ const LoginForm = () => {
     <div className="console-login__login-form">
       <div className="console-login__login-form-header">
         <img src="/images/logo.png" alt="react-antd-console" width={56} />
-        <h1>react-antd-console</h1>
+        <h1>岛屿博客管理</h1>
       </div>
       <Form
         form={form}
-        initialValues={{ userAccount: 'admin', userPassword: 'admin', remember: true }}
+        initialValues={{ username: '此夜曲中闻折柳', password: '555222000', remember: true }}
         onFinish={onFinish}
       >
         <Form.Item
           className="console-login__login-form-item"
-          name="userAccount"
+          name="username"
           rules={[{ required: true, message: t_login('请输入帐号') }]}
         >
           <Input size="large" prefix={<SvgIcon name="user" />} placeholder="admin" />
         </Form.Item>
         <Form.Item
           className="console-login__login-form-item"
-          name="userPassword"
+          name="password"
           rules={[{ required: true, message: t_login('请输入密码') }]}
         >
           <Input size="large" prefix={<SvgIcon name="locked" />} type="password" placeholder="admin" />
@@ -66,9 +69,9 @@ const LoginForm = () => {
           <Button block type="primary" htmlType="submit" size="large">
             {t_login('登录')}
           </Button>
-          <div className="console-login__login-form-register">
+          {/* <div className="console-login__login-form-register">
             {t_login('或')} <a>{t_login('注册')}</a>
-          </div>
+          </div> */}
         </Form.Item>
       </Form>
     </div>

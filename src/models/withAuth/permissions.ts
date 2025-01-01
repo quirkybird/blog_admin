@@ -40,5 +40,46 @@ function formatPermissions(permissions: string[]) {
   };
 }
 
-export default formatPermissions;
+//项目不做权限控制使用notPermissions
+
+function notPermissions() {
+  return {
+    home: true,
+    homeIndex: true,
+    homeGrid: true,
+    profile: true,
+
+    permission: true,
+    routePermission: true,
+    localPermission: true,
+    permissionLocalBtn1: true,
+    permissionLocalBtn2: true,
+
+    router: true,
+    routerDynamic: true,
+    routerMeta: true,
+
+    tablePage: true,
+    complexTablePage: true,
+    complexTablePageDetail: true,
+    scrollLoadModeList: true,
+    scrollLoadModeTable:true,
+    extraSearchModel: true,
+    formatSearchModel: true,
+    simpleTablePage: true,
+    tablePageInModal: true,
+    customSearchBtn: true,
+
+    nest: true,
+    error:true,
+
+    external: true,
+    singleSlider: true,
+    separation: true,
+  };
+}
+
+
+
+export default notPermissions;
 

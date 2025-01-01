@@ -34,9 +34,9 @@ const Header = () => {
         <Breadcrumb />
       </div>
       <div className="console-layout__header-right">
-        <IconWrap>
+        {/* <IconWrap>
           <ColorPicker />
-        </IconWrap>
+        </IconWrap> */}
         <IconWrap>
           <DarkSwitch />
         </IconWrap>
@@ -49,11 +49,11 @@ const Header = () => {
         <IconWrap show={isFullscreenEnabled}>
           <FullScreen />
         </IconWrap>
-        <Divider type="vertical" />
-        <IconWrap>
+        {/* <Divider type="vertical" /> */}
+        {/* <IconWrap>
           <Github />
-        </IconWrap>
-        <Divider type="vertical" />
+        </IconWrap> */}
+        {/* <Divider type="vertical" /> */}
         <IconWrap>
           <Avatar />
         </IconWrap>

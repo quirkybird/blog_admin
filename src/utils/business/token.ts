@@ -6,8 +6,8 @@ const MAX_LENGTH = 20;
 
 interface Token {
   accessToken: string;
-  refreshToken: string;
-  expiration: number;
+  // refreshToken: string;
+  // expiration: number;
 }
 
 const myLs = new MyLocalStorage<Token>(STORE_KEY, MAX_LENGTH);
@@ -27,11 +27,11 @@ export function lsGetToken(options?: GetOptions) {
  * 1. 开始refreshToken定时器
  * 2. 更新ramToken
  */
-export function lsSetToken(accessToken: string, refreshToken: string, expiration: number) {
+export function lsSetToken(accessToken: string, refreshToken?: string, expiration?: number) {
   myLs.set({
     accessToken,
-    refreshToken,
-    expiration,
+    // refreshToken,
+    // expiration,
   });
 }
 

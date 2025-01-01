@@ -63,7 +63,7 @@ const Home = () => {
               <Space direction="vertical" size="large">
                 <h2>欢迎你! { userAccount.charAt(0).toUpperCase() + userAccount.slice(1) }</h2>
                 <p className="console-home__desc">
-                  <strong>react-antd-console</strong>
+                  <strong>island</strong>
                   {text.map((el, i) => (
                     <motion.span
                       initial={{ opacity: 0 }}

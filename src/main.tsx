@@ -30,7 +30,8 @@ setScrollStyle({
 
 const root = createRoot(document.getElementById('root')!);
 
-enableMocking().then(async() => {
+// enableMocking().then(async() => {
+(async () => {
   await i18nInit();
   root.render(
     <HistoryRouter history={history}>
@@ -39,4 +40,6 @@ enableMocking().then(async() => {
       </AntdProvider>
     </HistoryRouter>,
   );
-});
+})()
+
+// });

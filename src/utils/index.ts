@@ -23,8 +23,8 @@ export function getRandomString(options?: {
   length?: number;
 }) {
   const { prefix, timestamp, length = 6 } = options ?? {};
-  const prefixChar = prefix ? `${prefix}_` : '';
-  const timestampChar = timestamp ? `${new Date().getTime()}_` : '';
+  const prefixChar = prefix ? `${prefix}_` : "";
+  const timestampChar = timestamp ? `${new Date().getTime()}_` : "";
   const stringChar = Math.random().toString(36).slice(-length);
   return `${prefixChar}${timestampChar}${stringChar}`;
 }
@@ -33,13 +33,20 @@ interface GetRandomNumberOptions {
   toFixed?: number;
 }
 
-export function getRandomNumber(max: number, min: number, options?: GetRandomNumberOptions) {
+export function getRandomNumber(
+  max: number,
+  min: number,
+  options?: GetRandomNumberOptions
+) {
   const { toFixed = 0 } = options ?? {};
   return Number((Math.random() * (max - min) + min).toFixed(toFixed));
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function omit<T extends Record<string, any>, K extends keyof T>(source: T, keys: K[]): Omit<T, K> {
+export function omit<T extends Record<string, any>, K extends keyof T>(
+  source: T,
+  keys: K[]
+): Omit<T, K> {
   // return Object.keys(source).reduce((target: Partial<T>, nowKey: K) => {
   //   if (!keys.includes(nowKey)) {
   //     target[nowKey] = source[nowKey];
@@ -47,7 +54,7 @@ export function omit<T extends Record<string, any>, K extends keyof T>(source: T
   //   return target;
   // }, {} as Partial<T>);
   const ret = {} as Omit<T, K>;
-  Object.keys(source).forEach(key => {
+  Object.keys(source).forEach((key) => {
     if (!(keys as string[]).includes(key)) {
       // @ts-expect-error pass
       ret[key] = source[key];
@@ -58,7 +65,7 @@ export function omit<T extends Record<string, any>, K extends keyof T>(source: T
 
 export function omitBy<T extends Record<string, unknown>>(
   source: T,
-  filterFn: (v: unknown) => boolean,
+  filterFn: (v: unknown) => boolean
 ) {
   return Object.keys(source).reduce((target: T, nowKey: keyof T) => {
     if (!filterFn(source[nowKey])) target[nowKey] = source[nowKey];
@@ -69,8 +76,10 @@ export function omitBy<T extends Record<string, unknown>>(
 export function getUrlQuery(key: string): string | undefined;
 export function getUrlQuery(): Record<string, string>;
 export function getUrlQuery(key?: string) {
-  const queryStr = window.location.search.replace(/^\?/, '');
-  const queryAry = queryStr ? queryStr.split('&').map(item => item.split('=')) : [];
+  const queryStr = window.location.search.replace(/^\?/, "");
+  const queryAry = queryStr
+    ? queryStr.split("&").map((item) => item.split("="))
+    : [];
   // @ts-expect-error pass
   const queryMap = new Map<string, string>(queryAry);
   if (key) {
@@ -79,4 +88,17 @@ export function getUrlQuery(key?: string) {
   } else {
     return Object.fromEntries(queryMap);
   }
+}
+
+export function getEnumLabel<T extends Record<string, string>>(
+  enumObj: T,
+  value: T[keyof T]
+): string | undefined {
+  const entries = Object.entries(enumObj) as [string, string][];
+  for (const [key, val] of entries) {
+    if (val === value) {
+      return key;
+    }
+  }
+  return undefined; // 如果没有找到对应的名称
 }

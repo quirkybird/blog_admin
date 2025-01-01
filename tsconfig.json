@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "noImplicitAny": true,
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom"],
@@ -20,11 +21,15 @@
       "@/*": ["src/*"],
       "@@/*": ["examples/*"]
     },
-    "types": ["vite/client", "vite-plugin-svgr/client", "vite-plugin-svg-icons/client"],
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "vite-plugin-svg-icons/client"
+    ],
     "resolveJsonModule": true,
     "declaration": true,
     "experimentalDecorators": true,
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "include": [
     "typings.d.ts",
@@ -39,7 +44,15 @@
     ".eslintrc.js",
     ".stylelintrc.js",
     ".prettierrc.js",
-    "jest.config.js",
+    "jest.config.js"
   ],
-  "exclude": ["node_modules", "dist", "deploy", "build", "jest", ".eslintrc.js", "postcss.config.js"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "deploy",
+    "build",
+    "jest",
+    ".eslintrc.js",
+    "postcss.config.js"
+  ]
 }
