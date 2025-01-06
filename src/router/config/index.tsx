@@ -107,7 +107,25 @@ export const routesConfig: RouteConfig[] = [
           },
         ],
       },
-
+      {
+        path: "tags",
+        name: "标签管理",
+        permission: "profile",
+        icon: <SvgIcon name="log" />,
+        children: [
+          {
+            path: "",
+            redirect: "index",
+          },
+          {
+            path: "index",
+            component: () => import("@/pages/tags"),
+            name: "标签管理",
+            permission: "profile",
+            icon: <SvgIcon name="log" />,
+          },
+        ],
+      },
       // {
       //   path: 'permission',
       //   name: '权限',
