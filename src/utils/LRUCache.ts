@@ -1,4 +1,4 @@
-import ls from 'store2';
+import ls from "store2";
 
 /**
  * 使用map数据结构保存数据
@@ -66,7 +66,7 @@ export interface GetOptions {
   /**
    * get时，把该值放到map的最新的位置
    */
-  bellwether?: boolean
+  bellwether?: boolean;
 }
 
 /**

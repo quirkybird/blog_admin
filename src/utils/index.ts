@@ -102,3 +102,22 @@ export function getEnumLabel<T extends Record<string, string>>(
   }
   return undefined; // 如果没有找到对应的名称
 }
+
+export function getRandomColor() {
+  const colors = [
+    "magenta",
+    "red",
+    "volcano",
+    "orange",
+    "gold",
+    "lime",
+    "green",
+    "cyan",
+    "blue",
+    "geekblue",
+    "purple",
+  ];
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}

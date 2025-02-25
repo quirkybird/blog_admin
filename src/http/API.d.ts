@@ -1,5 +1,4 @@
 declare namespace API {
-
   export interface BaseHttpResult {
     code: string;
     message: string;
@@ -9,19 +8,24 @@ declare namespace API {
     message: string;
     data: D;
   }
+  export interface MyHttpResult<D> {
+    success: string;
+    msg: string;
+    data: D;
+  }
 
   export interface ItemsHttpResult<D> {
     code: string;
     message: string;
     data: {
-      items: D
+      items: D;
     };
   }
   export interface ItemsPaginationHttpResult<D> {
     code: string;
     message: string;
     data: {
-      items: D,
+      items: D;
       total: number;
       page: number;
       perPage: number;
@@ -35,15 +39,14 @@ declare namespace API {
     message: string;
     data: {
       datas: {
-        items: D,
+        items: D;
         total: number;
         page: number;
         perPage: number;
         sort?: string;
         order?: string;
-      }
-      totalAll: number
+      };
+      totalAll: number;
     };
   }
 }
-

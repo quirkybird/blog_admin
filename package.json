@@ -58,7 +58,9 @@
     "react-router-dom": "^7.0.2",
     "react-router-toolset": "^0.0.6",
     "react-use": "^17.5.1",
-    "store2": "^2.14.3"
+    "recharts": "^2.15.1",
+    "store2": "^2.14.3",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.9",

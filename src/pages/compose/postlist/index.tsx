@@ -72,7 +72,7 @@ const SimpleTablePage = () => {
       dataIndex: "tags",
       key: "tags",
       render: (val) =>
-        JSON.parse(val).map((tag: string, index: number) => (
+        val.map((tag: string, index: number) => (
           <Tag color="blue" key={`tag-${index}`}>
             {tag}
           </Tag>

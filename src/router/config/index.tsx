@@ -14,39 +14,46 @@ export const routesConfig: RouteConfig[] = [
   },
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/databoard",
   },
   {
     path: "/",
     component: () => import("@/layouts/ConsoleLayout"),
     flatten: true,
     children: [
+      // {
+      // path: "home",
+      // name: "首页",
+      // permission: "home",
+      // icon: <SvgIcon name="home" />,
+      // children: [
+      //   {
+      //     path: "",
+      //     redirect: "index",
+      //   },
+      // {
+      //   path: "home",
+      //   component: () => import("@/pages/home"),
+      //   name: "首页",
+      //   permission: "homeIndex",
+      //   icon: <SvgIcon name="home" />,
+      // },
       {
-        path: "home",
-        name: "首页",
-        permission: "home",
-        icon: <SvgIcon name="home" />,
-        children: [
-          {
-            path: "",
-            redirect: "index",
-          },
-          {
-            path: "index",
-            component: () => import("@/pages/home"),
-            name: "首页",
-            permission: "homeIndex",
-            icon: <SvgIcon name="home" />,
-          },
-          // {
-          //   path: 'grid',
-          //   component: () => import('@/pages/grid'),
-          //   name: '栅格布局',
-          //   permission: 'homeGrid',
-          //   icon: <SvgIcon name="grid" />,
-          // },
-        ],
+        path: "databoard",
+        component: () => import("@/pages/dataBoard"),
+        name: "数据看板",
+        permission: "homeIndex",
+        icon: <SvgIcon name="board" />,
       },
+      // {
+      //   path: 'grid',
+      //   component: () => import('@/pages/grid'),
+      //   name: '栅格布局',
+      //   permission: 'homeGrid',
+      //   icon: <SvgIcon name="grid" />,
+      // },
+      //   ],
+      // },
       {
         path: "profile",
         hidden: true,
@@ -100,7 +107,7 @@ export const routesConfig: RouteConfig[] = [
           },
           {
             path: "index",
-            component: () => import("@/pages/logs"),
+            component: () => import("@/pages/ologs"),
             name: "日志管理",
             permission: "profile",
             icon: <SvgIcon name="log" />,
@@ -111,7 +118,7 @@ export const routesConfig: RouteConfig[] = [
         path: "tags",
         name: "标签管理",
         permission: "profile",
-        icon: <SvgIcon name="log" />,
+        icon: <SvgIcon name="tags" />,
         children: [
           {
             path: "",
@@ -122,7 +129,7 @@ export const routesConfig: RouteConfig[] = [
             component: () => import("@/pages/tags"),
             name: "标签管理",
             permission: "profile",
-            icon: <SvgIcon name="log" />,
+            icon: <SvgIcon name="tags" />,
           },
         ],
       },
