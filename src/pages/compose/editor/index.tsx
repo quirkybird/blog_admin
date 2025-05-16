@@ -35,7 +35,7 @@ const App = () => {
       vd?.destroy();
       setVd(undefined);
     };
-  }, [vd]);
+  }, []);
 
   return <div id="vditor" className="vditor" />;
 };
