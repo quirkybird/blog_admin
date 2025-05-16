@@ -140,6 +140,25 @@ export const routesConfig: RouteConfig[] = [
           },
         ],
       },
+      {
+        path: "friendLinks",
+        name: "友链管理",
+        permission: "profile",
+        icon: <SvgIcon name="link" />,
+        children: [
+          {
+            path: "",
+            redirect: "index",
+          },
+          {
+            path: "index",
+            component: () => import("@/pages/link"),
+            name: "友链管理",
+            permission: "profile",
+            icon: <SvgIcon name="link" />,
+          },
+        ],
+      },
       // {
       //   path: 'permission',
       //   name: '权限',

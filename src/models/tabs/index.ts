@@ -1,6 +1,6 @@
-import { Model, INITIAL_STATE, Persist, persist } from '@zhangsai/model';
-import router from '@/router';
-import { withAuthModel } from '@/models/withAuth';
+import { Model, INITIAL_STATE, Persist, persist } from "@zhangsai/model";
+import router from "@/router";
+import { withAuthModel } from "@/models/withAuth";
 
 export interface TabItem {
   key: string;
@@ -14,7 +14,7 @@ export class InitialState extends INITIAL_STATE {
 
 @Persist()
 class TabsModel extends Model<InitialState> {
-  static className?: string = 'tabs';
+  static className?: string = "tabs";
   constructor(initialState: InitialState) {
     super(initialState);
   }
@@ -36,8 +36,8 @@ class TabsModel extends Model<InitialState> {
       return;
     }
     const { items } = this.state;
-    if (!items?.find(item => item.key === newItem.key)) {
-      this.setState(draft => {
+    if (!items?.find((item) => item.key === newItem.key)) {
+      this.setState((draft) => {
         draft.items.push(newItem);
       });
     }
@@ -53,14 +53,14 @@ class TabsModel extends Model<InitialState> {
    *  删的不存在返回null
    */
   /**
-   * 
-   * @param key 
-   * @param isSelf 
-   * 
+   *
+   * @param key
+   * @param isSelf
+   *
    */
   removeTab(key: string, isSelf: boolean) {
     if (!isSelf) {
-      this.setState(draft => {
+      this.setState((draft) => {
         draft.items = draft.items.filter((item) => item.key !== `${key}`);
       });
       return null;
@@ -69,13 +69,11 @@ class TabsModel extends Model<InitialState> {
     let nextIndex = -1;
     const { items } = this.state;
     if (items.length === 1) return items[0];
-    this.setState(draft => {
+    this.setState((draft) => {
       draft.items = draft.items.filter((item, _index) => {
         const pass = item.key !== `${key}`;
         if (!pass) {
-          nextIndex = (_index === items.length - 1) ?
-            (_index - 1) :
-            (_index + 0);
+          nextIndex = _index === items.length - 1 ? _index - 1 : _index + 0;
         }
         return pass;
       });
@@ -87,22 +85,22 @@ class TabsModel extends Model<InitialState> {
     }
   }
   removeOther(key: string) {
-    this.setState(draft => {
+    this.setState((draft) => {
       draft.items = draft.items.filter((item) => {
         return item.key === `${key}`;
       });
     });
   }
   removeRight(key: string) {
-    this.setState(draft => {
-      const index = draft.items.findIndex(item => item.key === key);
+    this.setState((draft) => {
+      const index = draft.items.findIndex((item) => item.key === key);
       draft.items.splice(index + 1, draft.items.length - index - 1);
     });
   }
   removeLeft(key: string) {
     let removed: TabItem[] = [];
-    this.setState(draft => {
-      const index = draft.items.findIndex(item => item.key === key);
+    this.setState((draft) => {
+      const index = draft.items.findIndex((item) => item.key === key);
       removed = JSON.parse(JSON.stringify(draft.items.splice(0, index)));
     });
     return removed;
@@ -116,7 +114,10 @@ class TabsModel extends Model<InitialState> {
     const newItems = items.filter(({ key }) => {
       const routePath = router.getRoutePath(key);
       const route = router.flattenRoutes.get(routePath);
-      return !route?.permission || route?.permission && permissions[route?.permission]
+      return (
+        !route?.permission ||
+        (route?.permission && permissions[route?.permission])
+      );
     });
     this.setState({ items: newItems });
   }

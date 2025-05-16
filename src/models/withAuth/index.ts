@@ -71,17 +71,23 @@ class WithAuth extends Model<InitialState> {
     this.setState(initialState);
   }
   async requestBaseInfo() {
-    // 写死
-    // return httpGetBaseInfo().then(res => {
-    // const { userId = 0, userAccount = '', avatar = '', permissions = [] } = res.data.data;
-    this.setState({
-      hasRequestedBaseInfo: true,
-      userId: 2,
-      userAccount: "此夜曲中闻折柳",
-      avatar: "https://s2.loli.net/2025/03/23/YZN5are7E1Bwnot.jpg",
-      permissions: notPermissions(),
+    return new Promise((resolve) => {
+      httpGetBaseInfo().then((res) => {
+        const {
+          id = 2,
+          NAME = "此夜曲中闻折柳",
+          avatar = "https://s2.loli.net/2025/03/23/YZN5are7E1Bwnot.jpg",
+        } = Array.isArray(res.data) && res.data.length > 0 ? res.data[0] : {};
+        this.setState({
+          hasRequestedBaseInfo: true,
+          userId: id,
+          userAccount: NAME,
+          avatar,
+          permissions: notPermissions(),
+        });
+        resolve(true);
+      });
     });
-    // });
   }
   async actionLogout() {
     // return httpPostLogout().then(() => {

@@ -1,4 +1,4 @@
-import request from '@/http';
+import request from "@/http";
 
 interface HttpGetBaseInfoRes {
   userId: number;
@@ -11,5 +11,5 @@ interface HttpGetBaseInfoRes {
  * 获取个人基本信息
  */
 export async function httpGetBaseInfo() {
-  return request.get<API.HttpResult<HttpGetBaseInfoRes>>('/user/mine');
+  return request.get<API.HttpResult<any>>("/user/2");
 }
