@@ -1,12 +1,12 @@
-import { Model, INITIAL_STATE } from '@zhangsai/model';
-import { httpGetBaseInfo } from '@/services/withAuth';
-import notPermissions  from './permissions';
-import { lsGetToken, lsRemoveToken } from '@/utils/business/token';
-import router, { history } from '@/router';
-import { httpPostLogout } from '@/services/login';
-import i18n from '@/locales';
-import { message } from '@/components/AntdProvider';
-import { tabsModel } from '../tabs';
+import { Model, INITIAL_STATE } from "@zhangsai/model";
+import { httpGetBaseInfo } from "@/services/withAuth";
+import notPermissions from "./permissions";
+import { lsGetToken, lsRemoveToken } from "@/utils/business/token";
+import router, { history } from "@/router";
+import { httpPostLogout } from "@/services/login";
+import i18n from "@/locales";
+import { message } from "@/components/AntdProvider";
+import { tabsModel } from "../tabs";
 
 class InitialState extends INITIAL_STATE {
   /** 请求基本信息中 */
@@ -17,8 +17,8 @@ class InitialState extends INITIAL_STATE {
   hasRequestedBaseInfo: boolean = false;
   /** mine */
   userId: number = 0;
-  userAccount: string = '';
-  avatar: string = '';
+  userAccount: string = "";
+  avatar: string = "";
   /** 当前用户拥有的权限 */
   permissions: Record<string, boolean> = {};
 }
@@ -61,7 +61,7 @@ class WithAuth extends Model<InitialState> {
     const routePath = router.getRoutePath(window.location.pathname);
     const route = router.flattenRoutes.get(routePath);
     if (route?.permission && !this.state.permissions[route.permission]) {
-      history.push('/no-access');
+      history.push("/no-access");
     }
   }
   /**
@@ -73,26 +73,25 @@ class WithAuth extends Model<InitialState> {
   async requestBaseInfo() {
     // 写死
     // return httpGetBaseInfo().then(res => {
-      // const { userId = 0, userAccount = '', avatar = '', permissions = [] } = res.data.data;
-      this.setState({
-        hasRequestedBaseInfo: true,
-        userId: 2,
-        userAccount: '此夜曲中闻折柳',
-        avatar: 'https://p26-passport.byteacctimg.com/img/user-avatar/27f273980e0597820475cc6fd66cf037~120x120.awebp',
-        permissions: notPermissions(),
-      });
+    // const { userId = 0, userAccount = '', avatar = '', permissions = [] } = res.data.data;
+    this.setState({
+      hasRequestedBaseInfo: true,
+      userId: 2,
+      userAccount: "此夜曲中闻折柳",
+      avatar: "https://s2.loli.net/2025/03/23/YZN5are7E1Bwnot.jpg",
+      permissions: notPermissions(),
+    });
     // });
   }
   async actionLogout() {
     // return httpPostLogout().then(() => {
-      this.destroy();
-      message.success(i18n.t('layout:已登出'));
-      history.push('/login');
-      lsRemoveToken();
+    this.destroy();
+    message.success(i18n.t("layout:已登出"));
+    history.push("/login");
+    lsRemoveToken();
     // });
   }
 }
 
 /** 配合withAuth组件的model */
 export const withAuthModel = new WithAuth();
-

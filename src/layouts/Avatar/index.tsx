@@ -1,32 +1,35 @@
-import type { MenuProps } from 'antd';
-import { Dropdown, Tooltip } from 'antd';
-import type { MenuItemType } from 'rc-menu/lib/interface.d';
-import { history } from '@/router';
-import { useModel } from '@zhangsai/model';
-import { withAuthModel } from '@/models/withAuth';
-import { useTranslation } from 'react-i18next';
-import './index.less';
+import type { MenuProps } from "antd";
+import { Dropdown, Tooltip } from "antd";
+import type { MenuItemType } from "rc-menu/lib/interface.d";
+import { history } from "@/router";
+import { useModel } from "@zhangsai/model";
+import { withAuthModel } from "@/models/withAuth";
+import { useTranslation } from "react-i18next";
+import "./index.less";
 
 /**
  * 头像下拉
  */
 const Avatar = () => {
-  const userAccount = useModel(withAuthModel, 'userAccount');
-  const avatar = useModel(withAuthModel, 'avatar');
-  const { t: t_layout } = useTranslation('layout');
+  const userAccount = useModel(withAuthModel, "userAccount");
+  const avatar = useModel(withAuthModel, "avatar");
+  const { t: t_layout } = useTranslation("layout");
 
-  const items: MenuProps['items'] = [{
-    key: 'profile',
-    label: t_layout('个人中心'),
-  }, {
-    key: 'logout',
-    label: t_layout('退出登录'),
-  }];
+  const items: MenuProps["items"] = [
+    {
+      key: "profile",
+      label: t_layout("个人中心"),
+    },
+    {
+      key: "logout",
+      label: t_layout("退出登录"),
+    },
+  ];
 
   function onClickItem(menuInfo: MenuItemType) {
-    if (menuInfo.key === 'profile') {
+    if (menuInfo.key === "profile") {
       history.push(`/profile`);
-    } else if (menuInfo.key === 'logout') {
+    } else if (menuInfo.key === "logout") {
       withAuthModel.actionLogout();
     }
   }
@@ -40,13 +43,13 @@ const Avatar = () => {
             onClick: onClickItem,
           }}
           placement="bottom"
-          trigger={['click']}
+          trigger={["click"]}
         >
           <div className="console-layout__avatar-click">
             <span className="console-layout__avatar-image-wrap">
-              <img src={avatar || '/images/logo.png'} alt={userAccount} />
+              <img src={avatar || "/images/logo.png"} />
             </span>
-            <span className="console-layout__name">{ userAccount }</span>
+            <span className="console-layout__name">{userAccount}</span>
           </div>
         </Dropdown>
       </div>
@@ -55,4 +58,3 @@ const Avatar = () => {
 };
 
 export default Avatar;
-

@@ -111,28 +111,28 @@ const DataTable: React.FC = () => {
   const data = [
     {
       id: 1,
-      title: "First Blog Post",
+      title: "CommonJS 和 ES Modules究竟有啥区别?",
       views: 1234,
       comments: 56,
       date: "2023-06-01",
     },
     {
       id: 2,
-      title: "Second Blog Post",
+      title: "揭秘移动端像素问题",
       views: 987,
       comments: 43,
       date: "2023-06-05",
     },
     {
       id: 3,
-      title: "Third Blog Post",
+      title: "TS的内置类型",
       views: 1543,
       comments: 78,
       date: "2023-06-10",
     },
     {
       id: 4,
-      title: "Fourth Blog Post",
+      title: "伪元素content自定义问题",
       views: 765,
       comments: 32,
       date: "2023-06-15",

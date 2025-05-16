@@ -93,6 +93,13 @@ export const routesConfig: RouteConfig[] = [
             permission: "homeIndex",
             icon: <SvgIcon name="edit" />,
           },
+          {
+            path: "editor",
+            component: () => import("@/pages/compose/editor"),
+            name: "在线创作",
+            permission: "homeIndex",
+            icon: <SvgIcon name="write_online" />,
+          },
         ],
       },
       {

@@ -60,7 +60,8 @@
     "react-use": "^17.5.1",
     "recharts": "^2.15.1",
     "store2": "^2.14.3",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "vditor": "^3.11.0"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.9",
