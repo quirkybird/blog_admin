@@ -1,7 +1,7 @@
-import LoginForm from './LoginForm';
-import Tools from './Tools';
-import SvgIcon from '@/components/SvgIcon';
-import './index.less';
+import LoginForm from "./LoginForm";
+import Tools from "./Tools";
+import SvgIcon from "@/components/SvgIcon";
+import "./index.less";
 
 const Login = () => {
   return (
@@ -11,7 +11,7 @@ const Login = () => {
         <Tools />
       </div>
       <footer className="console-login__footer">
-        Copyright <SvgIcon name="copyright" /> 2024 quirkybird
+        Copyright <SvgIcon name="copyright" /> 2025 quirkybird
       </footer>
     </div>
   );
