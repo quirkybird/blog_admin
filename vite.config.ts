@@ -44,33 +44,33 @@ export default defineConfig({
   },
   build: {
     target: "es2015",
-    rollupOptions: {
-      output: {
-        manualChunks(id /* , { getModuleInfo } */) {
-          const ret = resolveManualChunks(id, {
-            react: ["node_modules/react"],
-            vendor: [
-              "node_modules/dayjs",
-              "node_modules/@ant",
-              "node_modules/antd",
-            ],
-            "framer-motion": ["node_modules/framer-motion"],
-            echarts: ["node_modules/echarts"],
-            svg: ["src/assets/svg"],
-            common: [
-              "main.tsx",
-              "App.tsx",
-              ["src/router/", "!/config/"],
-              "src/layouts/",
-              "src/http/",
-              "src/lib/",
-            ],
-            pages: ["src/pages/"],
-          });
-          return ret;
-        },
-      },
-    },
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks(id /* , { getModuleInfo } */) {
+    //       const ret = resolveManualChunks(id, {
+    //         react: ["node_modules/react", "node_modules/react-dom"],
+    //         vendor: [
+    //           "node_modules/dayjs",
+    //           "node_modules/@ant",
+    //           "node_modules/antd",
+    //         ],
+    //         "framer-motion": ["node_modules/framer-motion"],
+    //         echarts: ["node_modules/echarts"],
+    //         svg: ["src/assets/svg"],
+    //         common: [
+    //           "main.tsx",
+    //           "App.tsx",
+    //           ["src/router/", "!/config/"],
+    //           "src/layouts/",
+    //           "src/http/",
+    //           "src/lib/",
+    //         ],
+    //         pages: ["src/pages/"],
+    //       });
+    //       return ret;
+    //     },
+    //   },
+    // },
   },
 });
 
