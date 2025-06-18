@@ -28,17 +28,17 @@ export default defineConfig({
       "@@": path.resolve(__dirname, "./examples"),
     },
   },
-  server: {
-    host: true,
-    port: 9527,
-    proxy: {
-      "/api": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
+  // server: {
+  //   host: true,
+  //   port: 9527,
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://localhost:3000",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //   },
+  // },
   esbuild: {
     target: "chrome65",
   },

@@ -27,7 +27,7 @@ export default function Upload() {
     <div>
       {((postId && path == "/compose/edit") || path == "/compose/index") && (
         <iframe
-          src={`http://localhost:3000/${resPath}`}
+          src={`https://blog.yamorz.top/${resPath}`}
           width="100%"
           height="500px"
           title=""
